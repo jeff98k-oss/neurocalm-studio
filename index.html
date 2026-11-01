@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NeuroCalm Studio | ADHD Executive Reset & Somatic Sanctuary</title>
+
+  <!-- Prevent Search Engines from Indexing Your Paid Buyer Link -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Full-Screen Native App Experience When Added to iPhone/iPad/Android Home Screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="NeuroCalm">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0a0f1a">
+
+  <!-- Embedded SVG App Icon for iOS/Android Home Screen -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23064e3b'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-size='56' fill='%2334d399'>✦</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23064e3b'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-size='56' fill='%2334d399'>✦</text></svg>">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sage: { 50: '#f4f7f4', 100: '#e3ebe3', 500: '#5c7c64', 600: '#46624d', 800: '#27382b', 900: '#1a261d' },
+            amber: { 400: '#fbbf24', 500: '#f59e0b' },
+            slate: { 850: '#151f32', 950: '#0a0f1a' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
+    .breath-circle { transition: transform 0.1s linear, box-shadow 0.4s ease; }
+    .step-enter { animation: fadeInUp 0.3s ease-out forwards; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shakeError {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    .shake { animation: shakeError 0.3s ease-in-out; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.3); border-radius: 9999px; }
+  </style>
+</head>
+<body class="bg-stone-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col selection:bg-emerald-500/20">
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-[110]"></canvas>
+
+  <!-- ==================== VIP BUYER PASSCODE GATE ==================== -->
+  <div id="vip-gate" class="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex items-center justify-center p-4 transition-opacity duration-500">
+    <div id="vip-card" class="max-w-md w-full bg-slate-900 border border-emerald-500/30 rounded-3xl p-7 sm:p-8 shadow-2xl text-center relative overflow-hidden">
+      <!-- Ambient Top Glow -->
+      <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-56 h-56 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Language Toggle Inside VIP Gate -->
+      <div class="flex justify-end mb-2 relative z-10">
+        <button onclick="toggleLang()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-semibold border border-slate-700 transition">
+          EN / 中文
+        </button>
+      </div>
+
+      <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl font-bold mx-auto mb-4 shadow-inner">
+        ✦
+      </div>
+
+      <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[11px] font-semibold uppercase tracking-widest" data-i18n="vipBadge">
+        Official Etsy Buyer Sanctuary
+      </span>
+
+      <h2 class="text-xl sm:text-2xl font-bold text-white mt-3" data-i18n="vipTitle">
+        Welcome to NeuroCalm Studio
+      </h2>
+      <p class="text-xs text-slate-400 mt-1.5 leading-relaxed" data-i18n="vipDesc">
+        Please enter the VIP Access Key located in your Start-Here-Guide.pdf to unlock this device forever.
+      </p>
+
+      <div class="mt-6 space-y-3 relative z-10">
+        <input 
+          id="vip-input" 
+          type="text" 
+          placeholder="ENTER VIP KEY (e.g. CALM2026)" 
+          autocomplete="off"
+          onkeydown="if(event.key === 'Enter') verifyVipKey()"
+          class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-center text-white font-mono text-sm tracking-widest uppercase focus:outline-none focus:border-emerald-500 transition"
+        />
+        <p id="vip-error" class="hidden text-xs text-rose-400 font-medium" data-i18n="vipError">
+          ⚠️ Invalid Access Key. Please check your Etsy Start-Here PDF.
+        </p>
+        <button 
+          onclick="verifyVipKey()" 
+          class="w-full py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-950/50 transition flex items-center justify-center gap-2"
+        >
+          <span>🔓</span>
+          <span data-i18n="vipBtn">Unlock My Sanctuary Forever</span>
+        </button>
+      </div>
+
+      <p class="text-[11px] text-slate-500 mt-5 pt-4 border-t border-slate-800/80" data-i18n="vipFooter">
+        🔒 One-time verification • Saved locally in your browser so you never have to log in again.
+      </p>
+    </div>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <header class="border-b border-stone-200/80 dark:border-slate-800/80 backdrop-blur-md sticky top-0 z-30 bg-stone-50/80 dark:bg-slate-950/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-emerald-600/15 dark:bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-lg shadow-inner">
+          ✦
+        </div>
+        <div>
+          <h1 class="font-semibold text-base sm:text-lg tracking-tight flex items-center gap-2">
+            <span data-i18n="appTitle">NeuroCalm Studio</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20" data-i18n="offlineBadge">100% Offline &amp; Private</span>
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="appSubtitle">Zero-Friction Executive Dysfunction &amp; Nervous System Reset</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Dopamine Counter -->
+        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 text-xs font-medium">
+          <span>⚡</span>
+          <span data-i18n="dopaminePts">Sparks:</span>
+          <span id="spark-count" class="font-bold text-sm">0</span>
+        </div>
+
+        <!-- Ambient Brown Noise Toggle -->
+        <button id="sound-btn" onclick="toggleBrownNoise()" class="px-3 py-1.5 rounded-xl border border-stone-200 dark:border-slate-800 hover:bg-stone-100 dark:hover:bg-slate-900 text-xs font-medium flex items-center gap-1.5 transition" title="Soft Brown Noise for ADHD Focus">
+          <span id="sound-icon">🔇</span>
+          <span id="sound-label" class="hidden sm:inline" data-i18n="brownNoise">Brown Noise</span>
+        </button>
+
+        <!-- Language Switcher -->
+        <button onclick="toggleLang()" class="px-2.5 py-1.5 rounded-xl border border-stone-200 dark:border-slate-800 hover:bg-stone-100 dark:hover:bg-slate-900 text-xs font-semibold transition">
+          <span id="lang-label">EN / 中文</span>
+        </button>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button onclick="toggleTheme()" class="p-2 rounded-xl border border-stone-200 dark:border-slate-800 hover:bg-stone-100 dark:hover:bg-slate-900 text-sm transition" title="Toggle Dark/Light Mode">
+          <span id="theme-icon">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 flex-1 flex flex-col">
+    
+    <!-- Module Tabs -->
+    <div class="grid grid-cols-3 gap-2 sm:gap-4 p-1.5 rounded-2xl bg-stone-200/70 dark:bg-slate-900/90 border border-stone-300/50 dark:border-slate-800 mb-6">
+      <button onclick="switchTab('unscrambler')" id="tab-unscrambler" class="tab-btn py-2.5 px-3 rounded-xl font-medium text-xs sm:text-sm transition flex items-center justify-center gap-2 bg-white dark:bg-slate-800 shadow-sm text-emerald-600 dark:text-emerald-400">
+        <span>🧩</span>
+        <span data-i18n="tab1">1. 2-Min Task Unscrambler</span>
+      </button>
+      <button onclick="switchTab('hourglass')" id="tab-hourglass" class="tab-btn py-2.5 px-3 rounded-xl font-medium text-xs sm:text-sm transition flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+        <span>⏳</span>
+        <span data-i18n="tab2">2. Time-Blindness Horizon</span>
+      </button>
+      <button onclick="switchTab('somatic')" id="tab-somatic" class="tab-btn py-2.5 px-3 rounded-xl font-medium text-xs sm:text-sm transition flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+        <span>🫁</span>
+        <span data-i18n="tab3">3. SOS Somatic Reset</span>
+      </button>
+    </div>
+
+    <!-- ==================== MODULE 1: 2-MINUTE TASK UNSCRAMBLER ==================== -->
+    <section id="panel-unscrambler" class="flex-1 flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Input & Presets -->
+        <div class="lg:col-span-5 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400" data-i18n="m1Tag">Break Task Paralysis</span>
+              <button onclick="clearTasks()" class="text-xs text-slate-400 hover:text-rose-400 transition" data-i18n="resetBtn">Reset</button>
+            </div>
+            <h2 class="text-lg font-bold mb-1" data-i18n="m1Title">What feels overwhelming right now?</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4" data-i18n="m1Desc">When your brain sees a mountain, it freezes. Let's shrink it into absurdly small, zero-threat micro-actions.</p>
+
+            <!-- Big Task Input -->
+            <div class="space-y-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1" data-i18n="taskLabel">Overwhelming Task Name</label>
+                <input id="task-input" type="text" placeholder="e.g., Clean my disaster room / File taxes..." class="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-slate-950 border border-stone-300 dark:border-slate-800 text-sm focus:outline-none focus:border-emerald-500 transition">
+              </div>
+
+              <!-- Quick Scenario Templates -->
+              <div>
+                <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5" data-i18n="presetLabel">Or pick an instant anti-paralysis template:</label>
+                <div class="flex flex-wrap gap-1.5">
+                  <button onclick="loadPreset('room')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-emerald-500/15 hover:text-emerald-500 text-xs transition" data-i18n="pRoom">🧹 Messy Room</button>
+                  <button onclick="loadPreset('email')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-emerald-500/15 hover:text-emerald-500 text-xs transition" data-i18n="pEmail">📩 Scary Reply/Email</button>
+                  <button onclick="loadPreset('work')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-emerald-500/15 hover:text-emerald-500 text-xs transition" data-i18n="pWork">💻 Big Report/Project</button>
+                  <button onclick="loadPreset('chores')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-emerald-500/15 hover:text-emerald-500 text-xs transition" data-i18n="pChores">🧺 Dishes &amp; Laundry</button>
+                  <button onclick="loadPreset('hygiene')" class="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-slate-800 hover:bg-emerald-500/15 hover:text-emerald-500 text-xs transition" data-i18n="pHygiene">🚿 Low-Energy Self Care</button>
+                </div>
+              </div>
+
+              <button onclick="generateMicroSteps()" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm shadow-sm transition flex items-center justify-center gap-2 mt-2">
+                <span>⚡</span>
+                <span data-i18n="breakDownBtn">Shrink Into 2-Minute Micro-Steps</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Custom Micro-Step Adder -->
+          <div class="mt-6 pt-4 border-t border-stone-200 dark:border-slate-800">
+            <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5" data-i18n="addCustomStep">Add your own tiny step (&lt; 2 mins):</label>
+            <div class="flex gap-2">
+              <input id="custom-step-input" type="text" onkeydown="if(event.key === 'Enter') addCustomStep()" placeholder="e.g., Just open the laptop lid" class="flex-1 px-3 py-2 rounded-xl bg-stone-50 dark:bg-slate-950 border border-stone-300 dark:border-slate-800 text-xs focus:outline-none focus:border-emerald-500">
+              <button onclick="addCustomStep()" class="px-3.5 py-2 rounded-xl bg-stone-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-xs font-semibold transition">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Single-Step Focus Mode & Checklist -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+          
+          <!-- Single-Step Blindfold Card (Core ADHD Feature) -->
+          <div class="bg-gradient-to-br from-emerald-950/90 to-slate-900 border border-emerald-500/30 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-semibold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/20" data-i18n="blindfoldBadge">Single-Step Tunnel Vision (Ignore the rest)</span>
+              <span id="step-progress-text" class="text-xs text-emerald-300 font-mono">0 / 0</span>
+            </div>
+
+            <div id="active-step-box" class="my-4 min-h-[76px] flex flex-col justify-center">
+              <p id="active-step-title" class="text-xl sm:text-2xl font-bold tracking-tight text-white">Select a template or enter a task to generate your first 2-minute micro-step.</p>
+              <p id="active-step-hint" class="text-xs text-emerald-300/80 mt-1.5" data-i18n="permissionRule">Rule: You have full permission to stop after completing just this single step.</p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10">
+              <button onclick="CompleteCurrentStep()" id="complete-current-btn" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition flex items-center gap-2 shadow-md">
+                <span>✓</span>
+                <span data-i18n="doneNextBtn">Done! Give Me Dopamine (+10 ⚡)</span>
+              </button>
+
+              <button onclick="launch2MinSprint()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-medium text-emerald-200 transition flex items-center gap-1.5">
+                <span>⏱️</span>
+                <span data-i18n="sprint2MinBtn">Start 2-Min Visual Sprint</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Full Queue List -->
+          <div class="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-5 flex-1 flex flex-col">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400" data-i18n="queueTitle">Micro-Step Roadmap</h3>
+              <span class="text-xs text-slate-400" data-i18n="queueHint">Click any step to toggle</span>
+            </div>
+            <ul id="step-list" class="space-y-2 flex-1 overflow-y-auto max-h-64 pr-1"></ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 2: TIME-BLINDNESS VISUAL HORIZON ==================== -->
+    <section id="panel-hourglass" class="hidden flex-1 flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        
+        <!-- Left Controls & Presets -->
+        <div class="lg:col-span-5 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-5 space-y-5">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-500" data-i18n="m2Tag">Cure Time Blindness</span>
+            <h2 class="text-lg font-bold mt-1" data-i18n="m2Title">Visual Time Horizon</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="m2Desc">Digital numbers ("14:32") mean nothing to an ADHD brain. Watching physical volume shrink builds effortless time awareness without panic.</p>
+          </div>
+
+          <!-- Duration Presets -->
+          <div>
+            <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-2" data-i18n="selectHorizon">Choose Time Block:</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setTimer(2)" class="py-2.5 px-3 rounded-xl border border-stone-200 dark:border-slate-800 hover:border-emerald-500 text-xs font-semibold transition flex flex-col items-center">
+                <span class="text-base font-bold text-emerald-500">2m</span>
+                <span class="text-[10px] text-slate-400" data-i18n="t2m">Micro-Start</span>
+              </button>
+              <button onclick="setTimer(10)" class="py-2.5 px-3 rounded-xl border border-stone-200 dark:border-slate-800 hover:border-emerald-500 text-xs font-semibold transition flex flex-col items-center">
+                <span class="text-base font-bold text-emerald-500">10m</span>
+                <span class="text-[10px] text-slate-400" data-i18n="t10m">Quick Dash</span>
+              </button>
+              <button onclick="setTimer(25)" class="py-2.5 px-3 rounded-xl border border-stone-200 dark:border-slate-800 hover:border-emerald-500 text-xs font-semibold transition flex flex-col items-center">
+                <span class="text-base font-bold text-amber-500">25m</span>
+                <span class="text-[10px] text-slate-400" data-i18n="t25m">Deep Focus</span>
+              </button>
+            </div>
+            <div class="flex items-center gap-2 mt-2.5">
+              <input id="custom-mins" type="number" min="1" max="180" placeholder="Custom mins (1-180)" class="flex-1 px-3 py-2 rounded-xl bg-stone-50 dark:bg-slate-950 border border-stone-300 dark:border-slate-800 text-xs">
+              <button onclick="setCustomTimer()" class="px-3.5 py-2 rounded-xl bg-stone-200 dark:bg-slate-800 hover:bg-emerald-600 hover:text-white text-xs font-medium transition" data-i18n="setBtn">Set</button>
+            </div>
+          </div>
+
+          <!-- Reality Check (How many blocks left today) -->
+          <div class="p-3.5 rounded-xl bg-stone-100 dark:bg-slate-950 border border-stone-200/70 dark:border-slate-800/80">
+            <div class="flex items-center justify-between text-xs mb-1.5">
+              <span class="font-semibold text-slate-600 dark:text-slate-300" data-i18n="dayHorizon">Today's Awake Energy Horizon (Until 10 PM)</span>
+              <span id="day-pct" class="font-mono text-amber-500 font-bold">--%</span>
+            </div>
+            <div class="w-full h-2.5 rounded-full bg-stone-300 dark:bg-slate-800 overflow-hidden">
+              <div id="day-bar" class="h-full bg-gradient-to-r from-emerald-500 via-amber-500 to-rose-500 rounded-full transition-all duration-500" style="width: 50%"></div>
+            </div>
+            <p id="day-blocks-left" class="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5">Calculating remaining 30-min blocks today...</p>
+          </div>
+        </div>
+
+        <!-- Right Visual Sandglass & Radial Disk -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-center relative min-h-[360px]">
+          
+          <!-- Color Phase Status Badge -->
+          <div id="timer-phase-badge" class="mb-4 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            Ready — Abundance of Time
+          </div>
+
+          <!-- Large SVG Visual Time Disk -->
+          <div class="relative w-56 h-56 flex items-center justify-center">
+            <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" stroke="currentColor" stroke-width="10" class="text-stone-200 dark:text-slate-800" fill="none" />
+              <circle id="timer-ring" cx="60" cy="60" r="52" stroke="#10b981" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="326.72" stroke-dashoffset="0" class="transition-all duration-300" />
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+              <span id="timer-display" class="text-4xl font-bold font-mono tracking-tight">10:00</span>
+              <span id="timer-subtext" class="text-[11px] text-slate-400 mt-1" data-i18n="remainingLabel">Visual Volume Remaining</span>
+            </div>
+          </div>
+
+          <!-- Play / Pause / Reset Controls -->
+          <div class="flex items-center gap-3 mt-6">
+            <button id="timer-toggle-btn" onclick="toggleTimer()" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow transition">
+              Start Horizon
+            </button>
+            <button onclick="resetTimer()" class="px-4 py-2.5 rounded-xl border border-stone-300 dark:border-slate-700 hover:bg-stone-100 dark:hover:bg-slate-800 text-xs font-medium transition" data-i18n="resetBtn">
+              Reset
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 3: SOS SOMATIC & PANIC RESET ==================== -->
+    <section id="panel-somatic" class="hidden flex-1 flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left: Physiological Sigh Interactive Pacer -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-between min-h-[390px]">
+          <div class="text-center max-w-md">
+            <span class="text-xs font-semibold uppercase tracking-wider text-sky-400" data-i18n="m3Tag">Stanford Huberman Lab Protocol</span>
+            <h2 class="text-lg font-bold mt-1" data-i18n="m3Title">Physiological Sigh (Double-Inhale Reset)</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="m3Desc">2 quick inhales through the nose (inflate lungs fully, then top-off), followed by 1 long, slow exhale through the mouth. Fastest biological brake for panic &amp; heart rate.</p>
+          </div>
+
+          <!-- Animated Breathing Orb -->
+          <div class="relative w-56 h-56 flex items-center justify-center my-4">
+            <div id="breath-glow" class="absolute w-32 h-32 rounded-full bg-emerald-500/20 blur-xl transition-all duration-300"></div>
+            <div id="breath-orb" class="breath-circle w-28 h-28 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-400 shadow-lg flex items-center justify-center text-center p-3 border-2 border-white/20">
+              <span id="breath-instruction" class="text-xs font-bold text-slate-950 uppercase tracking-wide">Tap Start</span>
+            </div>
+          </div>
+
+          <!-- Cycle Progress & Start Button -->
+          <div class="w-full flex flex-col items-center gap-3">
+            <p id="breath-sub" class="text-xs text-slate-400 font-medium" data-i18n="breathSub">3 cycles takes only 30 seconds to reset your Vagus Nerve.</p>
+            <div class="flex gap-3">
+              <button id="breath-btn" onclick="toggleBreathing()" class="px-6 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-semibold text-sm shadow transition">
+                Start 60s Somatic Reset
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 5-4-3-2-1 Sensory Grounding Interactive Stepper -->
+        <div class="lg:col-span-5 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-wider text-emerald-500" data-i18n="groundTag">Stop Dissociation &amp; Racing Thoughts</span>
+              <button onclick="resetGrounding()" class="text-xs text-slate-400 hover:text-white" data-i18n="resetBtn">Reset</button>
+            </div>
+            <h3 class="text-base font-bold mt-1" data-i18n="groundTitle">5-4-3-2-1 Sensory Anchor</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4" data-i18n="groundDesc">Pull your brain out of catastrophic future loops and back into the physical room right now.</p>
+
+            <!-- Interactive Grounding Cards -->
+            <div id="grounding-list" class="space-y-2.5"></div>
+          </div>
+
+          <div class="mt-4 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-600 dark:text-emerald-300">
+            💡 <span data-i18n="somaticTip">Tip: Drop your shoulders away from your ears and unclench your jaw right now.</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-5xl mx-auto w-full px-6 py-4 text-center text-[11px] text-slate-400 border-t border-stone-200/50 dark:border-slate-900">
+    NeuroCalm Studio • Saved locally in your browser (localStorage) • Works 100% Offline on Phone, Tablet &amp; Desktop
+  </footer>
+
+  <!-- ==================== APPLICATION & VIP LOGIC ==================== -->
+  <script>
+    // --- VIP PASSCODE GATE CONFIGURATION ---
+    // You can add or change valid buyer passcodes here (keep them UPPERCASE)
+    const VALID_VIP_KEYS = ['CALM2026', 'NEUROVIP', 'SANCTUARY88'];
+
+    function checkVipAccess() {
+      const gate = document.getElementById('vip-gate');
+      if (!gate) return;
+
+      // 1. Auto-Unlock via URL query parameter: ?vip=CALM2026
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlKey = (urlParams.get('vip') || '').trim().toUpperCase();
+      if (VALID_VIP_KEYS.includes(urlKey)) {
+        localStorage.setItem('nc_vip_unlocked', 'true');
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      }
+
+      // 2. Hide gate immediately if already unlocked on this device
+      if (localStorage.getItem('nc_vip_unlocked') === 'true') {
+        gate.style.display = 'none';
+      }
+    }
+
+    function verifyVipKey() {
+      const input = document.getElementById('vip-input');
+      const errorMsg = document.getElementById('vip-error');
+      const gate = document.getElementById('vip-gate');
+      const card = document.getElementById('vip-card');
+      const entered = (input.value || '').trim().toUpperCase();
+
+      if (VALID_VIP_KEYS.includes(entered)) {
+        localStorage.setItem('nc_vip_unlocked', 'true');
+        errorMsg.classList.add('hidden');
+        playRewardChime();
+        fireConfetti();
+        gate.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => { gate.style.display = 'none'; }, 500);
+      } else {
+        errorMsg.classList.remove('hidden');
+        input.classList.add('border-rose-500');
+        card.classList.remove('shake');
+        void card.offsetWidth; // trigger reflow
+        card.classList.add('shake');
+        setTimeout(() => input.classList.remove('border-rose-500'), 1400);
+      }
+    }
+
+    // --- STATE & STORAGE ---
+    let lang = localStorage.getItem('nc_lang') || 'en';
+    let sparks = parseInt(localStorage.getItem('nc_sparks') || '0', 10);
+    let steps = JSON.parse(localStorage.getItem('nc_steps') || '[]');
+
+    const i18n = {
+      en: {
+        vipBadge: "Official Etsy Buyer Sanctuary",
+        vipTitle: "Welcome to NeuroCalm Studio",
+        vipDesc: "Please enter the VIP Access Key located in your Start-Here-Guide.pdf to unlock this device forever.",
+        vipError: "⚠️ Invalid Access Key. Please check your Etsy Start-Here PDF.",
+        vipBtn: "Unlock My Sanctuary Forever",
+        vipFooter: "🔒 One-time verification • Saved locally in your browser so you never have to log in again.",
+        appTitle: "NeuroCalm Studio",
+        offlineBadge: "100% Offline & Private",
+        appSubtitle: "Zero-Friction Executive Dysfunction & Nervous System Reset",
+        dopaminePts: "Sparks:",
+        brownNoise: "Brown Noise",
+        tab1: "1. 2-Min Task Unscrambler",
+        tab2: "2. Time-Blindness Horizon",
+        tab3: "3. SOS Somatic Reset",
+        m1Tag: "Break Task Paralysis",
+        resetBtn: "Reset",
+        m1Title: "What feels overwhelming right now?",
+        m1Desc: "When your brain sees a mountain, it freezes. Let's shrink it into absurdly small, zero-threat micro-actions.",
+        taskLabel: "Overwhelming Task Name",
+        presetLabel: "Or pick an instant anti-paralysis template:",
+        pRoom: "🧹 Messy Room",
+        pEmail: "📩 Scary Reply/Email",
+        pWork: "💻 Big Report/Project",
+        pChores: "🧺 Dishes & Laundry",
+        pHygiene: "🚿 Low-Energy Self Care",
+        breakDownBtn: "Shrink Into 2-Minute Micro-Steps",
+        addCustomStep: "Add your own tiny step (< 2 mins):",
+        blindfoldBadge: "Single-Step Tunnel Vision (Ignore the rest)",
+        permissionRule: "Rule: You have full permission to stop after completing just this single step.",
+        doneNextBtn: "Done! Give Me Dopamine (+10 ⚡)",
+        sprint2MinBtn: "Start 2-Min Visual Sprint",
+        queueTitle: "Micro-Step Roadmap",
+        queueHint: "Click any step to toggle",
+        m2Tag: "Cure Time Blindness",
+        m2Title: "Visual Time Horizon",
+        m2Desc: "Digital numbers ('14:32') mean nothing to an ADHD brain. Watching physical volume shrink builds effortless time awareness.",
+        selectHorizon: "Choose Time Block:",
+        t2m: "Micro-Start",
+        t10m: "Quick Dash",
+        t25m: "Deep Focus",
+        setBtn: "Set",
+        dayHorizon: "Today's Awake Horizon (8 AM - 10 PM)",
+        remainingLabel: "Visual Volume Remaining",
+        m3Tag: "Stanford Huberman Lab Protocol",
+        m3Title: "Physiological Sigh (Double-Inhale Reset)",
+        m3Desc: "2 quick inhales through the nose (inflate fully, then top-off), followed by 1 long, slow exhale through the mouth.",
+        breathSub: "3 cycles takes only 30 seconds to reset your Vagus Nerve.",
+        groundTag: "Stop Dissociation & Racing Thoughts",
+        groundTitle: "5-4-3-2-1 Sensory Anchor",
+        groundDesc: "Tap each card as you name them out loud to pull your brain back into the physical room.",
+        somaticTip: "Tip: Drop your shoulders away from your ears and unclench your jaw right now."
+      },
+      zh: {
+        vipBadge: "Etsy 买家专属私密空间",
+        vipTitle: "欢迎来到 NeuroCalm 神经复位舱",
+        vipDesc: "请输入交付文档 Start-Here-Guide.pdf 中的专属 VIP 口令（如 CALM2026），一键永久解锁本设备。",
+        vipError: "⚠️ 口令不正确，请核对您的 Start-Here PDF 引导页。",
+        vipBtn: "永久解锁我的专属空间",
+        vipFooter: "🔒 仅需验证一次 • 状态保存在本地浏览器，今后打开无需重复输入。",
+        appTitle: "NeuroCalm 神经复位舱",
+        offlineBadge: "100% 离线私密运行",
+        appSubtitle: "专为 ADHD 执行功能障碍、时间盲与急性焦虑设计的零摩擦工具",
+        dopaminePts: "多巴胺火花:",
+        brownNoise: "专注棕噪音",
+        tab1: "1. 2分钟任务破冰器",
+        tab2: "2. 时间盲视觉沙漏",
+        tab3: "3. 生理叹息急救舱",
+        m1Tag: "打破任务瘫痪 (Task Paralysis)",
+        resetBtn: "重置",
+        m1Title: "现在哪件事让你感到压力巨大、无从下手？",
+        m1Desc: "当大脑看到一座大山时就会宕机逃避。让我们把它切碎成毫无威胁、只需2分钟的微动作。",
+        taskLabel: "令你头疼的任务名称",
+        presetLabel: "或一键加载高频反瘫痪模板：",
+        pRoom: "🧹 房间乱成灾难",
+        pEmail: "📩 不敢回的信息/邮件",
+        pWork: "💻 憋不出的方案/报告",
+        pChores: "🧺 堆积如山的家务",
+        pHygiene: "🚿 极度低能量洗漱自理",
+        breakDownBtn: "一键拆解为 2 分钟无痛微步骤",
+        addCustomStep: "手动添加一步 (< 2分钟的极小动作)：",
+        blindfoldBadge: "单步盲盒聚焦模式（请忽略其余步骤）",
+        permissionRule: "黄金法则：做完当前这 1 小步后，你随时拥有完全停下来的权利。",
+        doneNextBtn: "完成这步！领取多巴胺 (+10 ⚡)",
+        sprint2MinBtn: "开启 2 分钟视觉冲刺",
+        queueTitle: "微步骤拆解全景列表",
+        queueHint: "点击任意步骤可切换完成状态",
+        m2Tag: "告别时间盲 (Time Blindness)",
+        m2Title: "时间体积可视化沙盘",
+        m2Desc: "抽象的数字对 ADHD 大脑毫无意义。把时间变成肉眼可见的体积缩减，温和建立时间感知。",
+        selectHorizon: "选择专注时间块：",
+        t2m: "2分钟破冰",
+        t10m: "10分钟冲刺",
+        t25m: "25分钟沉浸",
+        setBtn: "设定",
+        dayHorizon: "今日清醒能量进度条 (早8点 - 晚10点)",
+        remainingLabel: "剩余可用时间体积",
+        m3Tag: "斯坦福神经生物学验证协议",
+        m3Title: "生理性叹息 (Physiological Sigh)",
+        m3Desc: "用鼻子连续吸气两次（先吸满80%，再短促补吸一口撑开肺泡），然后用嘴缓慢长呼气。30秒内物理降低心率。",
+        breathSub: "跟随圆球呼吸 3 个循环（仅需 30 秒），即可物理激活迷走神经。",
+        groundTag: "阻断精神内耗与躯体僵直",
+        groundTitle: "5-4-3-2-1 感官着陆锚点",
+        groundDesc: "边大声说出周围的实物，边点击下方卡片打勾，把失控的大脑拉回当下房间。",
+        somaticTip: "身体扫描提醒：现在请把耸起的肩膀沉下来，松开紧咬的后槽牙。"
+      }
+    };
+
+    const presets = {
+      room: {
+        en: [
+          "Grab 1 trash bag and pick up just 5 pieces of obvious trash.",
+          "Collect any cups/dishes on your desk and put them by the sink (don't wash yet).",
+          "Throw all stray clothes into a single pile or basket.",
+          "Clear just 1 square foot of space on your desk or bed.",
+          "Take 1 deep breath — you broke the paralysis!"
+        ],
+        zh: [
+          "拿一个垃圾袋，只捡起视线内最显眼的 5 件垃圾。",
+          "把桌上的杯子/碗拿到水槽边（现在不用洗，放下就行）。",
+          "把散落的衣服全部踢进同一个篮子或角落堆好。",
+          "只清理出书桌或床面上 30×30 厘米的一小块干净区域。",
+          "深呼吸一次——你已经成功打破瘫痪状态了！"
+        ]
+      },
+      email: {
+        en: [
+          "Open the message/email without typing anything. Just read it once.",
+          "Write a messy 1-sentence bullet of what you actually need to say.",
+          "Type a polite opening line: 'Hi, thanks for your patience on this.'",
+          "Paste your 1-sentence answer and read it once.",
+          "Hit Send and immediately close the tab."
+        ],
+        zh: [
+          "只打开那个聊天窗口或邮件，不打字，先深呼吸看一眼内容。",
+          "在草稿框里用大白话随便写一句你最核心想表达的意思。",
+          "加上一句万能开头：'不好意思久等了，刚看到消息。'",
+          "检查一遍那句核心回复，不需要完美。",
+          "直接点击发送，并立刻关掉窗口奖励自己。"
+        ]
+      },
+      work: {
+        en: [
+          "Open a blank document and save it with a title.",
+          "Write 3 ugly, terrible bullet points of what needs to be covered.",
+          "Set a 2-minute timer and brain-dump under Bullet #1 (typos allowed).",
+          "Highlight 1 sentence that actually makes sense.",
+          "Stand up, stretch your arms, and decide if you want another 2 minutes."
+        ],
+        zh: [
+          "新建一个空白文档，随便起个名字保存。",
+          "用最烂的文笔列出 3 个哪怕只有几个词的提纲要点。",
+          "只针对第 1 个要点，瞎写两句话（允许有错别字和语病）。",
+          "标出里面稍微能用的一句话。",
+          "站起来伸个懒腰，决定要不要再来一个 2 分钟。"
+        ]
+      },
+      chores: {
+        en: [
+          "Walk to the sink and turn on warm water for 10 seconds.",
+          "Wash ONLY 3 items (e.g., 2 forks and 1 mug). Stop if you want.",
+          "Put 5 dirty clothes into the washing machine drum.",
+          "Wipe down just the front counter with one paper towel."
+        ],
+        zh: [
+          "走到水槽边，打开温水冲手 10 秒钟感受温度。",
+          "只洗 3 样东西（比如两个勺子和一个杯子），洗完随时允许停下。",
+          "把 5 件脏衣服塞进洗衣机滚筒里。",
+          "抽一张纸巾，只擦干净灶台或桌面最显眼的一块水渍。"
+        ]
+      },
+      hygiene: {
+        en: [
+          "Drink 3 big sips of water right now.",
+          "Walk to the bathroom and splash warm water on your face.",
+          "Put toothpaste on the brush — brush for just 30 seconds.",
+          "Change into clean socks or a fresh t-shirt."
+        ],
+        zh: [
+          "现在立刻喝三大口水。",
+          "走到洗手间，用温水拍一拍脸。",
+          "挤好牙膏，哪怕只刷 30 秒钟牙齿也算巨大胜利。",
+          "换上一双干净的袜子或一件舒服的T恤。"
+        ]
+      }
+    };
+
+    // --- WEB AUDIO SYNTHESIZER (Chimes & Brown Noise - 100% Offline) ---
+    let audioCtx = null;
+    let brownNoiseNode = null;
+    let brownGain = null;
+    let isPlayingNoise = false;
+
+    function getAudioCtx() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function playRewardChime(freq1 = 523.25, freq2 = 659.25, freq3 = 783.99) {
+      try {
+        const ctx = getAudioCtx();
+        [freq1, freq2, freq3].forEach((f, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(f, ctx.currentTime + idx * 0.09);
+          gain.gain.setValueAtTime(0.08, ctx.currentTime + idx * 0.09);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.09 + 0.5);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + idx * 0.09);
+          osc.stop(ctx.currentTime + idx * 0.09 + 0.5);
+        });
+      } catch (e) {}
+    }
+
+    function playSoftBreathCue(freq = 280) {
+      try {
+        const ctx = getAudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.04, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.6);
+      } catch (e) {}
+    }
+
+    function toggleBrownNoise() {
+      const ctx = getAudioCtx();
+      const icon = document.getElementById('sound-icon');
+      const btn = document.getElementById('sound-btn');
+      if (!isPlayingNoise) {
+        const bufferSize = 2 * ctx.sampleRate;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        let lastOut = 0.0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          output[i] = (lastOut + (0.02 * white)) / 1.02;
+          lastOut = output[i];
+          output[i] *= 3.5;
+        }
+        brownNoiseNode = ctx.createBufferSource();
+        brownNoiseNode.buffer = noiseBuffer;
+        brownNoiseNode.loop = true;
+        brownGain = ctx.createGain();
+        brownGain.gain.setValueAtTime(0.05, ctx.currentTime);
+        brownNoiseNode.connect(brownGain);
+        brownGain.connect(ctx.destination);
+        brownNoiseNode.start(0);
+        isPlayingNoise = true;
+        icon.textContent = '🔊';
+        btn.classList.add('border-emerald-500', 'text-emerald-500');
+      } else {
+        if (brownNoiseNode) brownNoiseNode.stop();
+        isPlayingNoise = false;
+        icon.textContent = '🔇';
+        btn.classList.remove('border-emerald-500', 'text-emerald-500');
+      }
+    }
+
+    // --- CONFETTI ENGINE ---
+    function fireConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const pieces = Array.from({ length: 45 }, () => ({
+        x: canvas.width / 2 + (Math.random() - 0.5) * 200,
+        y: canvas.height / 2,
+        vx: (Math.random() - 0.5) * 10,
+        vy: -Math.random() * 10 - 4,
+        size: Math.random() * 6 + 4,
+        color: ['#10b981', '#fbbf24', '#38bdf8', '#a78bfa'][Math.floor(Math.random() * 4)],
+        alpha: 1
+      }));
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+        pieces.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.35;
+          p.alpha -= 0.018;
+          if (p.alpha > 0) {
+            active = true;
+            ctx.globalAlpha = p.alpha;
+            ctx.fillStyle = p.color;
+            ctx.fillRect(p.x, p.y, p.size, p.size);
+          }
+        });
+        if (active) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      animate();
+    }
+
+    // --- MODULE 1: TASK UNSCRAMBLER ---
+    function saveState() {
+      localStorage.setItem('nc_sparks', sparks);
+      localStorage.setItem('nc_steps', JSON.stringify(steps));
+      document.getElementById('spark-count').textContent = sparks;
+    }
+
+    function loadPreset(key) {
+      const list = presets[key][lang] || presets[key]['en'];
+      steps = list.map(text => ({ text, done: false }));
+      saveState();
+      renderSteps();
+    }
+
+    function generateMicroSteps() {
+      const val = document.getElementById('task-input').value.trim();
+      if (!val) {
+        loadPreset('work');
+        return;
+      }
+      if (lang === 'zh') {
+        steps = [
+          { text: `【物理破冰】把与「${val}」相关的工具或页面打开摆在面前（不开始做）`, done: false },
+          { text: `【清空阻力】拿张纸或备忘录，随便写下关于「${val}」最简单的 1 个词`, done: false },
+          { text: `【2分钟试水】只针对「${val}」做最粗糙的头 2 分钟动作，允许随时停下`, done: false },
+          { text: `【微里程碑】保存当前进度，喝口水庆祝成功破冰！`, done: false }
+        ];
+      } else {
+        steps = [
+          { text: `[Physical Setup] Just open the tool/tab or grab 1 item needed for "${val}".`, done: false },
+          { text: `[Zero-Perfection] Write 1 messy line or do the ugliest 60-second version of "${val}".`, done: false },
+          { text: `[2-Min Sprint] Work on just ONE tiny corner of "${val}" for 120 seconds.`, done: false },
+          { text: `[Permission to Pause] Save progress, exhale, and celebrate breaking inertia!`, done: false }
+        ];
+      }
+      saveState();
+      renderSteps();
+    }
+
+    function addCustomStep() {
+      const inp = document.getElementById('custom-step-input');
+      const val = inp.value.trim();
+      if (!val) return;
+      steps.push({ text: val, done: false });
+      inp.value = '';
+      saveState();
+      renderSteps();
+    }
+
+    function toggleStep(idx) {
+      steps[idx].done = !steps[idx].done;
+      if (steps[idx].done) {
+        sparks += 10;
+        playRewardChime();
+      }
+      saveState();
+      renderSteps();
+    }
+
+    function CompleteCurrentStep() {
+      const nextIdx = steps.findIndex(s => !s.done);
+      if (nextIdx !== -1) {
+        steps[nextIdx].done = true;
+        sparks += 10;
+        playRewardChime();
+        fireConfetti();
+        saveState();
+        renderSteps();
+      }
+    }
+
+    function clearTasks() {
+      steps = [];
+      saveState();
+      renderSteps();
+    }
+
+    function renderSteps() {
+      const ul = document.getElementById('step-list');
+      const activeTitle = document.getElementById('active-step-title');
+      const progressText = document.getElementById('step-progress-text');
+      ul.innerHTML = '';
+
+      const doneCount = steps.filter(s => s.done).length;
+      progressText.textContent = `${doneCount} / ${steps.length}`;
+
+      const currentStep = steps.find(s => !s.done);
+      if (steps.length === 0) {
+        activeTitle.textContent = lang === 'zh'
+          ? '请在左侧输入令你头疼的任务，或点击上方模板一键生成第 1 个微步骤。'
+          : 'Select a template or enter a task to generate your first 2-minute micro-step.';
+      } else if (!currentStep) {
+        activeTitle.textContent = lang === 'zh'
+          ? '🎉 所有微步骤已通关！你的大脑刚刚战胜了执行瘫痪！'
+          : '🎉 All micro-steps conquered! You officially defeated task paralysis!';
+      } else {
+        activeTitle.textContent = `👉 ${currentStep.text}`;
+      }
+
+      steps.forEach((step, idx) => {
+        const li = document.createElement('li');
+        li.className = `step-enter p-3 rounded-xl border text-xs sm:text-sm flex items-center justify-between cursor-pointer transition ${
+          step.done
+            ? 'bg-stone-100/60 dark:bg-slate-950/50 border-stone-200/50 dark:border-slate-800/50 text-slate-400 line-through'
+            : 'bg-stone-50 dark:bg-slate-950 border-stone-200 dark:border-slate-800 hover:border-emerald-500/50'
+        }`;
+        li.onclick = () => toggleStep(idx);
+        li.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-5 h-5 rounded-lg flex items-center justify-center border ${
+              step.done ? 'bg-emerald-500 border-emerald-500 text-slate-950 font-bold' : 'border-slate-400'
+            }">${step.done ? '✓' : idx + 1}</span>
+            <span>${step.text}</span>
+          </div>
+        `;
+        ul.appendChild(li);
+      });
+    }
+
+    function launch2MinSprint() {
+      switchTab('hourglass');
+      setTimer(2);
+      toggleTimer(true);
+    }
+
+    // --- MODULE 2: TIME-BLINDNESS HORIZON ---
+    let totalSeconds = 600;
+    let remainingSeconds = 600;
+    let timerInterval = null;
+
+    function setTimer(mins) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      totalSeconds = mins * 60;
+      remainingSeconds = totalSeconds;
+      document.getElementById('timer-toggle-btn').textContent = lang === 'zh' ? '开始视觉倒计时' : 'Start Horizon';
+      updateTimerUI();
+    }
+
+    function setCustomTimer() {
+      const val = parseInt(document.getElementById('custom-mins').value, 10);
+      if (val > 0 && val <= 180) setTimer(val);
+    }
+
+    function toggleTimer(forceStart = false) {
+      const btn = document.getElementById('timer-toggle-btn');
+      if (timerInterval && !forceStart) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        btn.textContent = lang === 'zh' ? '继续' : 'Resume';
+      } else {
+        clearInterval(timerInterval);
+        btn.textContent = lang === 'zh' ? '暂停' : 'Pause';
+        timerInterval = setInterval(() => {
+          if (remainingSeconds > 0) {
+            remainingSeconds--;
+            updateTimerUI();
+          } else {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            playRewardChime(587.33, 783.99, 1046.50);
+            fireConfetti();
+            sparks += 15;
+            saveState();
+            btn.textContent = lang === 'zh' ? '完成！再来一次' : 'Complete! Restart';
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      remainingSeconds = totalSeconds;
+      document.getElementById('timer-toggle-btn').textContent = lang === 'zh' ? '开始视觉倒计时' : 'Start Horizon';
+      updateTimerUI();
+    }
+
+    function updateTimerUI() {
+      const mins = Math.floor(remainingSeconds / 60).toString().padStart(2, '0');
+      const secs = (remainingSeconds % 60).toString().padStart(2, '0');
+      document.getElementById('timer-display').textContent = `${mins}:${secs}`;
+
+      const pct = totalSeconds > 0 ? remainingSeconds / totalSeconds : 0;
+      const circumference = 326.72;
+      const ring = document.getElementById('timer-ring');
+      const badge = document.getElementById('timer-phase-badge');
+      ring.style.strokeDashoffset = circumference * (1 - pct);
+
+      if (pct > 0.5) {
+        ring.setAttribute('stroke', '#10b981');
+        badge.className = 'mb-4 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+        badge.textContent = lang === 'zh' ? '充裕绿区 — 安心沉浸，无需焦虑' : 'Green Zone — Abundant Time, Zero Rush';
+      } else if (pct > 0.2) {
+        ring.setAttribute('stroke', '#f59e0b');
+        badge.className = 'mb-4 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20';
+        badge.textContent = lang === 'zh' ? '温和黄区 — 时间过半，保持节奏' : 'Amber Zone — Halfway Horizon, Steady Flow';
+      } else {
+        ring.setAttribute('stroke', '#f43f5e');
+        badge.className = 'mb-4 px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20';
+        badge.textContent = lang === 'zh' ? '收尾红区 — 准备温柔收尾' : 'Soft Landing — Wrapping Up Soon';
+      }
+    }
+
+    function updateDayHorizon() {
+      const now = new Date();
+      const hours = now.getHours() + now.getMinutes() / 60;
+      const startHour = 8;
+      const endHour = 22;
+      let pctUsed = Math.max(0, Math.min(100, ((hours - startHour) / (endHour - startHour)) * 100));
+      const pctLeft = Math.round(100 - pctUsed);
+      const blocksLeft = Math.max(0, Math.round((endHour - hours) * 2));
+      document.getElementById('day-pct').textContent = `${pctLeft}% left`;
+      document.getElementById('day-bar').style.width = `${pctLeft}%`;
+      document.getElementById('day-blocks-left').textContent = lang === 'zh'
+        ? `距离晚上10点还有约 ${blocksLeft} 个“30分钟能量块”，不必苛求完美。`
+        : `Approx. ${blocksLeft} thirty-minute blocks left until 10 PM tonight. Be gentle with yourself.`;
+    }
+
+    // --- MODULE 3: SOMATIC PHYSIOLOGICAL SIGH & 5-4-3-2-1 GROUNDING ---
+    let breathTimer = null;
+    let isBreathing = false;
+
+    function toggleBreathing() {
+      const btn = document.getElementById('breath-btn');
+      const orb = document.getElementById('breath-orb');
+      const glow = document.getElementById('breath-glow');
+      const text = document.getElementById('breath-instruction');
+
+      if (isBreathing) {
+        clearTimeout(breathTimer);
+        isBreathing = false;
+        orb.style.transform = 'scale(1)';
+        text.textContent = lang === 'zh' ? '点击开始' : 'Tap Start';
+        btn.textContent = lang === 'zh' ? '开启 60秒 生理叹息复位' : 'Start 60s Somatic Reset';
+        return;
+      }
+
+      isBreathing = true;
+      btn.textContent = lang === 'zh' ? '停止呼吸引导' : 'Stop Pacer';
+
+      function runCycle() {
+        if (!isBreathing) return;
+        // Phase 1: First Nasal Inhale (2.2s)
+        playSoftBreathCue(320);
+        text.textContent = lang === 'zh' ? '1. 鼻吸气 (80%)' : '1. Inhale Nose';
+        orb.style.transition = 'transform 2.2s ease-out';
+        orb.style.transform = 'scale(1.45)';
+        glow.style.transform = 'scale(1.5)';
+
+        breathTimer = setTimeout(() => {
+          if (!isBreathing) return;
+          // Phase 2: Top-off 2nd Inhale (1.3s)
+          playSoftBreathCue(420);
+          text.textContent = lang === 'zh' ? '2. 再短促补吸一口!' : '2. Top-Off Sip Inhale!';
+          orb.style.transition = 'transform 1.1s ease-in-out';
+          orb.style.transform = 'scale(1.75)';
+          glow.style.transform = 'scale(1.9)';
+
+          breathTimer = setTimeout(() => {
+            if (!isBreathing) return;
+            // Phase 3: Long Slow Mouth Exhale (5.5s)
+            playSoftBreathCue(220);
+            text.textContent = lang === 'zh' ? '3. 用嘴缓慢长呼气...' : '3. Long Slow Mouth Exhale...';
+            orb.style.transition = 'transform 5.5s linear';
+            orb.style.transform = 'scale(0.95)';
+            glow.style.transform = 'scale(0.9)';
+
+            breathTimer = setTimeout(runCycle, 5600);
+          }, 1300);
+        }, 2200);
+      }
+
+      runCycle();
+    }
+
+    const groundingData = {
+      en: [
+        { count: 5, label: "5 Things You Can SEE", sub: "Notice 5 small details around you (a shadow, a texture, a color)." },
+        { count: 4, label: "4 Things You Can TOUCH", sub: "Feel your feet on the floor, the fabric of your shirt, or the desk." },
+        { count: 3, label: "3 Things You Can HEAR", sub: "Listen to distant hums, birds, or the Brown Noise generator." },
+        { count: 2, label: "2 Things You Can SMELL", sub: "Take a gentle breath—notice the air, coffee, or soap." },
+        { count: 1, label: "1 Kind Truth About Now", sub: "'I am safe in this room right now, and I don't have to fix everything at once.'" }
+      ],
+      zh: [
+        { count: 5, label: "说出眼前看到的 5 样物体", sub: "观察房间里的一个小细节（光影、杯子纹理、某个颜色）。" },
+        { count: 4, label: "感受身体接触到的 4 种触感", sub: "感受双脚踩在地面、衣服贴着皮肤、手指触碰桌面的真实感。" },
+        { count: 3, label: "辨别周围听到的 3 种声音", sub: "空调的微弱嗡鸣、窗外的声音，或者开启顶部的棕噪音。" },
+        { count: 2, label: "留意空气中的 2 种气味", sub: "轻轻呼吸，感受空气的温度、水杯或衣物的气味。" },
+        { count: 1, label: "对自己说 1 句温和的事实", sub: "“此时此刻我在这个房间里是安全的，我不需要一秒钟解决所有问题。”" }
+      ]
+    };
+
+    let groundedState = [false, false, false, false, false];
+
+    function renderGrounding() {
+      const container = document.getElementById('grounding-list');
+      container.innerHTML = '';
+      const items = groundingData[lang] || groundingData['en'];
+      items.forEach((item, idx) => {
+        const done = groundedState[idx];
+        const div = document.createElement('div');
+        div.onclick = () => {
+          groundedState[idx] = !groundedState[idx];
+          if (groundedState[idx]) {
+            playRewardChime();
+            sparks += 5;
+            saveState();
+          }
+          renderGrounding();
+        };
+        div.className = `p-3 rounded-xl border cursor-pointer transition flex items-start gap-3 ${
+          done
+            ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-400'
+            : 'bg-stone-50 dark:bg-slate-950 border-stone-200 dark:border-slate-800 hover:border-emerald-500/40'
+        }`;
+        div.innerHTML = `
+          <div class="w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
+            done ? 'bg-emerald-500 text-slate-950' : 'bg-stone-200 dark:bg-slate-800 text-slate-400'
+          }">${done ? '✓' : item.count}</div>
+          <div>
+            <div class="text-xs font-bold">${item.label}</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">${item.sub}</div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function resetGrounding() {
+      groundedState = [false, false, false, false, false];
+      renderGrounding();
+    }
+
+    // --- TABS, THEME & LANGUAGE ---
+    function switchTab(tab) {
+      ['unscrambler', 'hourglass', 'somatic'].forEach(t => {
+        document.getElementById(`panel-${t}`).classList.add('hidden');
+        const btn = document.getElementById(`tab-${t}`);
+        btn.className = 'tab-btn py-2.5 px-3 rounded-xl font-medium text-xs sm:text-sm transition flex items-center justify-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+      });
+      document.getElementById(`panel-${tab}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-${tab}`);
+      activeBtn.className = 'tab-btn py-2.5 px-3 rounded-xl font-medium text-xs sm:text-sm transition flex items-center justify-center gap-2 bg-white dark:bg-slate-800 shadow-sm text-emerald-600 dark:text-emerald-400';
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      document.getElementById('theme-icon').textContent = isDark ? '☀️' : '🌙';
+    }
+
+    function applyTranslations() {
+      const dict = i18n[lang] || i18n['en'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) el.textContent = dict[key];
+      });
+      renderSteps();
+      renderGrounding();
+      updateTimerUI();
+      updateDayHorizon();
+    }
+
+    function toggleLang() {
+      lang = lang === 'en' ? 'zh' : 'en';
+      localStorage.setItem('nc_lang', lang);
+      applyTranslations();
+    }
+
+    // --- INITIALIZE ON LOAD ---
+    window.addEventListener('DOMContentLoaded', () => {
+      checkVipAccess();
+      document.getElementById('spark-count').textContent = sparks;
+      if (steps.length === 0) loadPreset('room');
+      applyTranslations();
+      setInterval(updateDayHorizon, 60000);
+    });
+  </script>
+</body>
+</html>
